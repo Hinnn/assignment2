@@ -13,17 +13,16 @@
     <div>
       <label class="form-label">Input customerID</label>
       <input class="form__input" type="decimal" v-model.trim="customerID"/>
-      <div class="error" v-if="!$v.customerID.required">CustomerID is Required</div>
     </div>
     <div class="form-group">
       <label class="form-label">Input date</label>
       <input class="form__input" type="decimal" v-model.trim="date"/>
     </div>
     <div class="form-group" :class="{ 'form-group--error': $v.amount.$error }">
-      <label class="form-control-label" name="amount">Amount (Enter a number between 1 and 4)</label>
+      <label class="form-control-label" name="amount">Amount (Enter a number between 1 and 3)</label>
       <input class="form__input" type="decimal" v-model.trim="amount"/>
     </div>
-    <div class="error" v-if="!$v.amount.between">Amount must be between 1 and 4</div>
+    <div class="error" v-if="!$v.amount.between">Amount must be between 1 and 3</div>
     <div class="form-group">
       <label class="form-label">Select a Room Num</label>
       <select id="roomNum" name="roomNum" class="form-control"
@@ -91,7 +90,7 @@ export default {
     }, */
     amount: {
       required,
-      between: between(1, 4)
+      between: between(1, 3)
     }
   },
   methods: {
@@ -106,8 +105,8 @@ export default {
         setTimeout(() => {
           this.submitStatus = 'OK'
           var booking = {
-            paymenttype: this.paymenttype,
             customerID: this.customerID,
+            paymenttype: this.paymenttype,
             date: this.date,
             amount: this.amount,
             roomNum: this.roomNum

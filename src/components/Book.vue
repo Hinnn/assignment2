@@ -33,7 +33,7 @@ export default {
           console.log(response)
         })
         .catch(error => {
-          this.errors.push(error)
+          // this.errors.push(error)
           console.log(error)
         })
     }

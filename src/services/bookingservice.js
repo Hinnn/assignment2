@@ -8,9 +8,9 @@ export default {
     return Api().post('/bookings', booking,
       { headers: {'Content-type': 'application/json'} })
   },
-  /* putBooking (customerID) {
-    return Api().put(`/bookings/${customerID}/amount`)
-  }, */
+  upvoteBooking (customerID) {
+    return Api().put(`/donations/${customerID}/amount`)
+  },
   deleteBooking (customerID) {
     return Api().delete(`/bookings/${customerID}`)
   },
@@ -20,7 +20,7 @@ export default {
   putBooking (customerID, booking) {
     console.log('REQUESTING ' + booking.customerID + ' ' +
       JSON.stringify(booking, null, 5))
-    return Api().put(`/bookings/${customerID}`, booking,
+    return Api().put(`/bookings/${customerID}/amount`, booking,
       { headers: {'Content-type': 'application/json'} })
   }
 }

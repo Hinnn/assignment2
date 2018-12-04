@@ -23,15 +23,17 @@ export default {
     return {
       messagetitle: ' Bookings List ',
       bookings: [],
-      props: ['customerID'],
+      props: ['booking'],
       errors: [],
-      columns: ['_id', 'customerID', 'date', 'amount', 'roomNum', 'edit', 'remove'],
+      columns: ['_id', 'customerID', 'paymenttype', 'date', 'amount', 'roomNum', 'edit', 'remove'],
+      // columns: ['customerID', 'paymenttype', 'date', 'amount', 'roomNum', 'edit', 'remove'],
       options: {
         perPage: 10,
         filterable: ['customerID', 'date'],
         headings: {
           _id: 'ID',
           customerID: 'customerID',
+          paymenttype: 'paymenttype',
           date: 'Date',
           amount: 'Amount',
           roomNum: 'roomNum'
@@ -59,7 +61,7 @@ export default {
     // Fetches Bookings when the component is created
     editBooking: function (customerID) {
       this.$router.params = customerID
-      this.$router.push('Edit')
+      this.$router.push('edit')
     },
     deleteBooking: function (customerID) {
       this.$swal({
