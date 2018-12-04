@@ -1,8 +1,19 @@
 <template>
   <form @submit.prevent="submit">
     <div class="form-group">
+      <label class="form-label">Select Payment Type</label>
+      <select id="paymenttype" name="paymenttype" class="form-control"
+              type="text" v-model="paymenttype">
+        <option value="null" selected disabled hidden>Choose Payment Type</option>
+        <option value="Direct">Direct</option>
+        <option value="PayPal">PayPal</option>
+        <option value="Visa">Visa</option>
+      </select>
+    </div>
+    <div>
       <label class="form-label">Input customerID</label>
       <input class="form__input" type="decimal" v-model.trim="customerID"/>
+      <div class="error" v-if="!$v.customerID.required">CustomerID is Required</div>
     </div>
     <div class="form-group">
       <label class="form-label">Input date</label>
@@ -26,6 +37,10 @@
         <option value="202">202</option>
         <option value="203">203</option>
         <option value="204">204</option>
+        <option value="301">301</option>
+        <option value="302">302</option>
+        <option value="303">303</option>
+        <option value="304">304</option>
       </select>
     </div>
     <p>
@@ -60,7 +75,9 @@ export default {
   props: ['bookingBtnTitle', 'booking'],
   data () {
     return {
+      messagetitle: 'Book',
       customerID: this.booking.customerID,
+      paymenttype: this.booking.paymenttype,
       date: this.booking.date,
       amount: this.booking.amount,
       roomNum: this.booking.roomNum,
@@ -89,6 +106,7 @@ export default {
         setTimeout(() => {
           this.submitStatus = 'OK'
           var booking = {
+            paymenttype: this.paymenttype,
             customerID: this.customerID,
             date: this.date,
             amount: this.amount,
